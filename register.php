@@ -69,7 +69,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 	<!-- Alert messages -->
 	<?php if(isset($_GET["err"]) && !empty($_GET["err"])){ ?>
 		<div class="alert alert-danger">
-			<button class="close" data-close="alert"></button>
+			<!-- <button class="close" data-close="alert"></button> -->
 			<span>
 			<?php echo $_GET["err"]; ?>. </span>
 		</div>     
@@ -77,7 +77,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 
     <?php if(isset($_GET["msg"]) && !empty($_GET["msg"])){ ?>
 		<div class="alert alert-success">
-			<button class="close" data-close="alert"></button>
+			<!-- <button class="close" data-close="alert"></button> -->
 			<span>
 			<?php echo $_GET["msg"]; ?>. </span>
 		</div>     
@@ -86,7 +86,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 	<!-- BEGIN REGISTRATION FORM -->
 	<form action="<?php echo $editFormAction; ?>" method="POST" class="register-form" id="register" name="register">
 		<div class="form-title">
-			<span class="form-title">Sign Up</span>
+			<span class="form-title">Create a New Account</span>
 		</div>
 		<p class="hint">
 			 Enter your account details below:
@@ -125,7 +125,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 			<input class="form-control" type="text" name=" usr_firstname" required/>
 		</div>
    
-
 		<div class="form-actions">
 			<button type="button" id="register-back-btn" class="btn btn-default">Back</button>
 			<button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
