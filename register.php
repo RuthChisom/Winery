@@ -1,5 +1,5 @@
 <!-- required files -->
-<?php include("dh-config.php"); ?>
+<?php include("server/dh-config.php"); ?>
 <?php require_once('server/dbconn.php'); ?>
 <?php include("server/functions.php"); ?>
 

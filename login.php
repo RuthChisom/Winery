@@ -1,14 +1,7 @@
 <!-- required files -->
-<?php include("dh-config.php"); ?>
+<?php include("server/dh-config.php"); ?>
 <?php require_once('server/dbconn.php'); ?>
 <?php include("server/functions.php"); ?>
-
-<!-- <?php
-// $editFormAction = $_SERVER['PHP_SELF'];
-// if (isset($_SERVER['QUERY_STRING'])) {
-//   $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
-// }
-?> -->
 
 <!-- action for submit button - Validate request to login to this site-->
 <?php
