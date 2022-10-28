@@ -977,3 +977,111 @@ li.home a img {
         background-color: #9b9b9b;
       }
 /* faq page ends */
+
+.login {
+  background-color: #364150 !important;
+}
+
+.login .content {
+	background-color: #eceef1;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-ms-border-radius: 7px;
+	-o-border-radius: 7px;
+	border-radius: 7px;
+	width: 400px;
+	margin: 40px auto 10px auto;
+	padding: 30px;
+	padding-top: 10px;
+	overflow: hidden;
+	position: relative;
+  }
+
+.register-form{
+	border: 0;
+	margin-bottom: 0;
+	padding-bottom: 0px;
+}
+
+.login .content .login-form{
+  padding: 0px;
+  margin: 0px;
+}
+
+.login .content .form-control {
+  border: none;
+  background-color: #dde3ec;
+  height: 43px;
+  color: #8290a3;
+  border: 1px solid #dde3ec;
+}
+
+.login .content .form-title {
+	font-weight: 300;
+	margin-bottom: 25px;
+}
+.login .content .hint {
+	color: #999;
+	padding: 0;
+	margin: 15px 0 7px 0;
+}
+.login .content .form-actions .btn {
+	margin-top: 1px;
+  }
+  
+  .login .content .form-actions .btn-success {
+	font-weight: 600;
+	padding: 10px 20px !important;
+  }
+  
+  .login .content .form-actions .btn-default {
+	font-weight: 600;
+	padding: 10px 25px !important;
+	color: #6c7a8d;
+	background-color: #ffffff;
+	border: none;
+  }
+  
+  .login .content .form-actions .btn-default:hover {
+	background-color: #fafaff;
+	color: #45b6af;
+  }
+  
+
+.control-label {
+	margin-top: 1px;
+}
+.control-label .required {
+	color: #e02222;
+	font-size: 12px;
+	padding-left: 2px;
+}
+
+.textfieldRequiredMsg, 
+.textfieldInvalidFormatMsg, 
+.textfieldMinValueMsg,
+.textfieldMaxValueMsg,
+.textfieldMinCharsMsg,
+.textfieldMaxCharsMsg,
+.textfieldValidMsg,
+.passwordRequiredMsg, 
+.passwordInvalidStrengthMsg, 
+.passwordMinCharsMsg,
+.passwordMaxCharsMsg,
+.passwordCustomMsg,
+.passwordValidMsg {
+	display: none;
+}
+.textfieldRequiredState .textfieldRequiredMsg, 
+.textfieldInvalidFormatState .textfieldInvalidFormatMsg, 
+.textfieldMinValueState .textfieldMinValueMsg,
+.textfieldMaxValueState .textfieldMaxValueMsg,
+.textfieldMinCharsState .textfieldMinCharsMsg,
+.textfieldMaxCharsState .textfieldMaxCharsMsg
+{
+	display: inline;
+	color: #f2dede;
+	/*border: 1px solid #ebccd1; */
+	/*padding: 5px; */
+	font-size: 13px;
+}
