@@ -16,7 +16,16 @@ $query_users = sprintf("SELECT * FROM user");
 $users = mysqli_query($dbconn,$query_users) or die(mysqli_error($dbconn));
 $row_users = mysqli_fetch_assoc($users);
 $totalRows_users = mysqli_num_rows($users);
+
+if(isset($_GET["delete"]) && ($_GET["delete"] != "")) {
+	//Run Query
+		$deleteSQL = sprintf("DELETE FROM user WHERE usr_id=%s", GetSQLValueString($_GET['delete'],"int"));
+		$deleteRS = mysqli_query($dbconn,$deleteSQL) or die(mysqli_error($dbconn));
+		header("Location: user-list.php?msg=User Deleted Sucessfully!");
+		exit;
+	}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -98,7 +107,7 @@ $totalRows_users = mysqli_num_rows($users);
 					<div class="portlet box green">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-globe"></i>Users
+								<!-- <i class="fa fa-globe"></i>Users -->
 							</div>
 							<div class="tools">								
 								<a href="javascript:;" class="reload">
@@ -143,7 +152,7 @@ $totalRows_users = mysqli_num_rows($users);
 								<td>
 								<?php  ?>
 									<a href="user-edit.php?id=<?php echo $row_users["usr_id"]; ?>" class="tooltips" title="Edit User" ><button> Edit </button></a>&nbsp;&nbsp;&nbsp;
-									<a href="#" data-confirm-msg="Are You Sure You Want To Delete This User ?"><button> Delete</button></a>
+									<a href="user-list.php?delete=<?php echo $row_users["usr_id"]; ?>" data-confirm-msg="Are You Sure You Want To Delete This User ?"><button> Delete</button></a>
 								<?php ?>
 								</td>
 							</tr>
