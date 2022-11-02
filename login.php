@@ -87,13 +87,12 @@ if (isset($_POST['login_email'])) {
 		</div> 
 
 		<div class="form-group">
-			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-			<label class="control-label visible-ie8 visible-ie9">Email</label>
-			<input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Staff ID" name="login_email"/>
+			<label class="control-label" for="email">Email</label>
+			<input class="form-control form-control-solid" type="text" autocomplete="off" name="login_email" id="email"/>
 		</div>
 		<div class="form-group">
-			<label class="control-label visible-ie8 visible-ie9">Password</label>
-			<input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="login_password"/>
+			<label class="control-label" for="password">Password</label>
+			<input class="form-control" type="password" name="login_password" id="password"/>
 		</div>
 		<div class="form-actions">
 			<button type="submit" class="btn btn-primary btn-block uppercase">Login</button>

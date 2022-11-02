@@ -33,12 +33,13 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 	//End of Email checking
 	
   	//register new user
- 	$insertSQL = sprintf("INSERT INTO user ( usr_firstname, usr_lastname, usr_email, usr_phone, usr_password) VALUES (%s, %s, %s, %s, %s)",
+ 	$insertSQL = sprintf("INSERT INTO user ( usr_firstname, usr_lastname, usr_email, usr_phone, usr_password, usr_registered_date) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['usr_firstname'], "text"),
                        GetSQLValueString($_POST["usr_lastname"], "text"),
                        GetSQLValueString($_POST["usr_email"], "text"),
                        GetSQLValueString($_POST['usr_phone'], "text"),
                        GetSQLValueString($_POST["usr_password"], "text"),
+                       GetSQLValueString(date("Y-m-d h:i:s"), "date"),
 					);
   mysqli_select_db($dbconn, $database_dbconn);
   $Result1 = mysqli_query($dbconn,$insertSQL) or die(mysqli_error($dbconn));
