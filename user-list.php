@@ -7,7 +7,7 @@
 <?php
 //can I see the user list?
 if(!in_array($_SESSION['app_admin'], ['admin']) ) {
-	header("location: index.html?msg=Sorry, access to that page is denied!"); exit;
+	header("location: index.php?err=Sorry, access to that page is denied! Kindly logout and login as an admin"); exit;
 }
 
 // get user list from db
@@ -36,6 +36,7 @@ if(isset($_GET["delete"]) && ($_GET["delete"] != "")) {
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
 	<title>User List | <?php echo $config['title'] ?></title>
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/nav.css" rel="stylesheet" type="text/css" media="all"/>     
 </head>
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-sidebar-closed-hide-logo">
 <!-- BEGIN HEADER -->
@@ -43,9 +44,13 @@ if(isset($_GET["delete"]) && ($_GET["delete"] != "")) {
 	<div class="page-header-inner"><?php 
 	// include('-inc-header.php') ?></div>
 </div> -->
+<!-- header-section-starts -->
+<div class="c-header" id="home">
+			<?php include('header.php') ?>
+		</div>
 <!-- END HEADER -->
-<div class="clearfix">
-</div>
+<!-- <div class="clearfix">
+</div> -->
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
 	<!-- BEGIN CONTENT -->
@@ -69,7 +74,7 @@ if(isset($_GET["delete"]) && ($_GET["delete"] != "")) {
 			<!-- BEGIN PAGE BREADCRUMB -->
 			<ul class="page-breadcrumb breadcrumb">
 				<li>
-					<a href="index.html">Back to Homepage</a>
+					<a href="index.php">Back to Homepage</a>
 					<i class="fa fa-circle"></i>
 				</li>
 				<!-- <li>

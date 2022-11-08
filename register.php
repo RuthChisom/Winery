@@ -27,7 +27,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 
 	//Start Email checking
 	if($totalRows_emailCheck) {
-		header("Location: register.php?target=register&err=This email is already registered ! Please use another one or LOGIN HERE.");
+		header("Location: register.php?target=register&err=This email is already registered ! Please use another one.");
 		exit;
 	}
 	//End of Email checking
@@ -62,77 +62,88 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Register | <?php echo $config['title'] ?></title>
+    <link href="css/nav.css" rel="stylesheet" type="text/css" media="all"/>     
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
-<body class="login">
-	<div class="content">
+<body>
 	
-	<!-- Alert messages -->
-	<?php if(isset($_GET["err"]) && !empty($_GET["err"])){ ?>
-		<div class="alert alert-danger">
-			<!-- <button class="close" data-close="alert"></button> -->
-			<span>
-			<?php echo $_GET["err"]; ?>. </span>
-		</div>     
-    <?php } ?>   
+	<!-- header-section-starts -->
+	<div class="c-header" id="home">
+		<?php include('header.php') ?>
+	</div>
 
-    <?php if(isset($_GET["msg"]) && !empty($_GET["msg"])){ ?>
-		<div class="alert alert-success">
-			<!-- <button class="close" data-close="alert"></button> -->
-			<span>
-			<?php echo $_GET["msg"]; ?>. </span>
-		</div>     
-    <?php } ?>
+	<div class="container">
+		<div class="row">
+			<div class="faq-wrapper">
+	
+				<!-- Alert messages -->
+				<?php if(isset($_GET["err"]) && !empty($_GET["err"])){ ?>
+					<div class="alert alert-danger">
+						<!-- <button class="close" data-close="alert"></button> -->
+						<span>
+						<?php echo $_GET["err"]; ?>. </span>
+					</div>     
+				<?php } ?>   
 
-	<!-- BEGIN REGISTRATION FORM -->
-	<form action="<?php echo $editFormAction; ?>" method="POST" class="register-form" id="register" name="register">
-		<div class="form-title">
-			<span class="form-title">Create a New Account</span>
-		</div>
-		<p class="hint">
-			 Enter your account details below:
-		</p>
+				<?php if(isset($_GET["msg"]) && !empty($_GET["msg"])){ ?>
+					<div class="alert alert-success">
+						<!-- <button class="close" data-close="alert"></button> -->
+						<span>
+						<?php echo $_GET["msg"]; ?>. </span>
+					</div>     
+				<?php } ?>
+				<div class="faq-inner">
+					<div class="contact-form">
 
-        <?php if(isset($_GET["error"]) && !empty($_GET["error"])){ ?>
-		<div class="alert alert-danger">
-			<button class="close" data-close="alert"></button>
-			<span>
-			<?php echo $_GET["error"]; ?>. </span>
-		</div>     
-        <?php } ?> 
+						<!-- BEGIN REGISTRATION FORM -->
+						<form action="<?php echo $editFormAction; ?>" method="POST" class="register-form" id="register" name="register">
+							<div class="form-title">
+								<span class="form-title">Create a New Account</span>
+							</div>
+
+							<?php if(isset($_GET["error"]) && !empty($_GET["error"])){ ?>
+							<div class="alert alert-danger">
+								<button class="close" data-close="alert"></button>
+								<span>
+								<?php echo $_GET["error"]; ?>. </span>
+							</div>     
+							<?php } ?> 
 
 
-		<div class="form-group">
-			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-			<label class="control-label ">Email*</label>
-          <input class="form-control" type="email" name="usr_email" required/>
-		</div>
-		<div class="form-group">
-			<label class="control-label ">Password*</label>
-			<input class="form-control" type="password" id=" usr_password" name="usr_password" required/>
-		</div>
-        <div class="form-group">
-			<label class="control-label ">Phone Number*</label>
-			<input class="form-control" type="text" name="usr_phone" required/>
-		</div>
+							<div class="form-group">
+								<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+								<label class="control-label ">Email*</label>
+							<input class="form-control" type="email" name="usr_email" required/>
+							</div>
+							<div class="form-group">
+								<label class="control-label ">Password*</label>
+								<input class="form-control" type="password" id=" usr_password" name="usr_password" required/>
+							</div>
+							<div class="form-group">
+								<label class="control-label ">Phone Number*</label>
+								<input class="form-control" type="text" name="usr_phone" required/>
+							</div>
 
-		<div class="form-group">
-			<label class="control-label ">Last Name*</label>
-			<input class="form-control" type="text" name="usr_lastname" required/>
-		</div>
+							<div class="form-group">
+								<label class="control-label ">Last Name*</label>
+								<input class="form-control" type="text" name="usr_lastname" required/>
+							</div>
 
-		<div class="form-group">
-			<label class="control-label ">First Name*</label>
-			<input class="form-control" type="text" name=" usr_firstname" required/>
+							<div class="form-group">
+								<label class="control-label ">First Name*</label>
+								<input class="form-control" type="text" name=" usr_firstname" required/>
+							</div>
+					
+							<div class="form-actions">
+								<button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
+							</div>
+							<input type="hidden" name="MM_insert" value="register">
+						</form>
+						<!-- END REGISTRATION FORM -->
+					</div>
+				</div>
+			</div>
 		</div>
-   
-		<div class="form-actions">
-			<button type="button" id="register-back-btn" class="btn btn-default">Back</button>
-			<button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
-		</div>
-		<input type="hidden" name="MM_insert" value="register">
-	</form>
-	<!-- END REGISTRATION FORM -->
 	</div>
 </body>
 </html>

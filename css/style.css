@@ -93,7 +93,7 @@ label{
 	font-size: 1.2em;
 	text-decoration:none;
 	letter-spacing: 1px;
-	font-weight: 400;
+	font-weight: 600;
 	background: #16a085;
 	padding: 10px 22px;
 	border-top-left-radius: 9px;
@@ -117,15 +117,16 @@ label{
 	background: #2A576C;
 }
 .sign-in {
-	width: 89%;
-	float: left;
+	/* width: 50%; */
+	float: right;
 }
 .sign-up1 {
-	width: 11%;
-	float: left;
+	/* width: 50%; */
+	float: right;
 }
 .signing {
-	margin: 3em 0;
+	/* margin: 3em 0; */
+	display: flex;
 }
 .content {
 	background:#eceef0;
@@ -899,16 +900,15 @@ li.home a img {
 	text-transform: capitalize;
 	font-weight: normal;
 }
-.contact-form input[type="text"], .contact-form textarea {
+.contact-form input, .contact-form textarea {
 	background: #FFFFFF;
 	border: 1px solid #E7E7E7;
 	color: rgba(85, 81, 81, 0.84);
 	padding: 8px;
 	display: block;
-	width: 100%;
+	width: 70%;
 	outline: none;
 	-webkit-appearance: none;
-	text-transform: capitalize;
 }
 .contact-form textarea{
 	resize:none;

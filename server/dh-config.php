@@ -8,7 +8,7 @@ $config = array();
 $config['fullname'] = 'Drinkhub Application';
 
 //Website's Name/Title
-$config['title'] = 'Drinkhub App';
+$config['title'] = 'DrinksHub | Order Wine, Spirit & Carbonated Drinks';
 
 //Organization's Short name
 $config['shortname'] = 'Drinkhub';
