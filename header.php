@@ -40,33 +40,28 @@
                   </li>  
                   <li><a href="faq.php">FAQ</a></li>
                   <li><a href="contact.php">Contact US</a></li>
+
                   <!-- if a there is a logged in user -->
-					<?php if(isset($user)) { ?>
-                        <!-- if logged in user is an admin -->
-					    <?php if($user["usr_role"]=='admin') { ?>
+					        <?php if(isset($user)) { ?>
+                      <!-- if logged in user is an admin -->
+					              <?php if($user["usr_role"]=='admin') { ?>
                             <li><a href="user-list.php">Users </a></li>
                         <?php } ?>
                         <li><a href="logout.php">LOGOUT</a></li>
                         <b style="color: white;">
-                        <?php echo $user["usr_firstname"] . ' ' . $user["usr_lastname"] ?>
-
+                          <?php echo $user["usr_firstname"] . ' ' . $user["usr_lastname"] ?>
                         </b>
-					<?php } 
-            else { ?>
-              <div class="signing text-right">
-              <!-- <div class="container"> -->
-                <div class="sign-in">
-                  <a href="login.php">Sign In</a>
-                </div>
-                <div class="sign-up1">
-                  <a href="register.php">Sign Up</a>
-                </div>
-                
-              <!-- </div> -->
-			    </div>
-					<?php } ?>
-
-
+                  <?php } 
+                  else { ?>
+                      <div class="signing text-right">
+                        <div class="sign-in">
+                          <a href="login.php">Sign In</a>
+                        </div>
+                        <div class="sign-up1">
+                          <a href="register.php">Sign Up</a>
+                        </div>
+                      </div>
+                  <?php } ?>
               </ul>
             </div>	
           </div>

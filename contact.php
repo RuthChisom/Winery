@@ -1,7 +1,8 @@
+<?php include("server/dh-config.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Contact | DrinksHub | Order Wine, Spirit & Carbonated Drinks</title>
+<title>Contact | <?php echo $config['title'] ?></title>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,10 +11,8 @@
 </head>
 
 <body>
-	<!-- header-section-starts -->
-    <div class="c-header" id="home">
 		<?php include('header.php') ?>
-	</div>
+		
 	<!-- contact starts -->
 	<!-- <div class="container">
 		<div class="callnowfield">

@@ -2,6 +2,7 @@
 <?php include("server/dh-config.php"); ?>
 <?php require_once('server/dbconn.php'); ?>
 <?php require_once("server/functions.php"); ?>
+<?php require_once('server/check-session.php'); ?>
 
 <!-- action for submit button - Validate request to login to this site-->
 <?php
@@ -9,6 +10,10 @@
 if (!isset($_SESSION)) {
   session_start();
 }
+//is someone already logged in?
+// if(isset($_SESSION['app_user']) ) {
+// 	header("location: index.php"); exit;
+// }
 
 $loginFormAction = $_SERVER['PHP_SELF'];
 
@@ -17,7 +22,6 @@ if (isset($_POST['login_email'])) {
   $password=$_POST['login_password'];
   $MM_redirectLoginSuccess = "index.php";
   $MM_redirectLoginFailed = "login.php?err=Oops! Login failed. Email or Password incorrect.";
-//   $MM_redirecttoReferrer = false;
   mysqli_select_db($dbconn, $database_dbconn);
   
   $LoginRS__query=sprintf("SELECT * FROM user WHERE usr_email=%s AND usr_password=%s",
@@ -27,9 +31,6 @@ if (isset($_POST['login_email'])) {
   $row_login = mysqli_fetch_assoc($LoginRS);
   $loginFoundUser = mysqli_num_rows($LoginRS);
   if ($loginFoundUser) {
-    //  $loginStrGroup = "";
-    
-	// if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
     //declare two session variables and assign them
     $_SESSION['app_user'] = $row_login["usr_id"];
     $_SESSION['app_admin'] = $row_login["usr_role"];
@@ -55,10 +56,8 @@ if (isset($_POST['login_email'])) {
     	<link href="css/nav.css" rel="stylesheet" type="text/css" media="all"/>     
 	</head>
 	<body >
-		<!-- header-section-starts -->
-		<div class="c-header" id="home">
+		<!-- header-section -->
 			<?php include('header.php') ?>
-		</div>
 
 		<div class="container">
 			<div class="row">
@@ -69,7 +68,7 @@ if (isset($_POST['login_email'])) {
 						<div class="alert alert-danger">
 							<span>
 							<?php echo $_GET["err"]; ?>. </span>
-						</div>     
+						</div>
 					<?php } ?>   
 
 					<?php if(isset($_GET["msg"]) && !empty($_GET["msg"])){ ?>
@@ -78,16 +77,14 @@ if (isset($_POST['login_email'])) {
 							<?php echo $_GET["msg"]; ?>. </span>
 						</div>     
 					<?php } ?>
+
 					<div class="faq-inner">
 						<div class="contact-form">
-
 							<!-- BEGIN LOGIN FORM -->
-							<form action="<?php echo $loginFormAction; ?>" method="POST" class="login-form" id="login" name="login">
-								<div class="form-title">
-									<span class="form-title">Welcome!</span>
-									<span class="form-subtitle">Please login.</span>
+							<form action="<?php echo $loginFormAction; ?>" method="POST" id="login" name="login">
+								<div>
+									<h2>Welcome! Please login.</h2>
 								</div> 
-
 								<div>
 									<label for="email">Email</label>
 									<input type="text" name="login_email" id="email"/>
@@ -96,8 +93,8 @@ if (isset($_POST['login_email'])) {
 									<label for="password">Password</label>
 									<input type="password" name="login_password" id="password"/>
 								</div>
-								<div>
-									<button type="submit" class="btn btn-primary btn-block uppercase">Login</button>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-default">Login</button>
 								</div>
 							</form>
 							<!-- END LOGIN FORM -->
@@ -106,5 +103,8 @@ if (isset($_POST['login_email'])) {
 				</div>
 			</div>
 		</div>
+
+		<!-- footer -->
+		<?php include('footer.html') ?>
 	</body>
 </html>

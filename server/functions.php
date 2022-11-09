@@ -6,8 +6,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = stripslashes($theValue);
   }
 
-  // $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($dbconn,$theValue) : mysqli_escape_string($dbconn,$theValue);
-
   switch ($theType) {
     case "text":
       $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";

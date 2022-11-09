@@ -41,9 +41,9 @@ label{
 	background:#1c242b;
 	border-bottom:1px solid #565f64; 
 }
-.header-top-right {
+/* .header-top-right {
 	float:right;
-}
+} */
 .logo {
 	float:left;
 	margin-top: -100px;
@@ -800,7 +800,9 @@ i.pinterest:hover {
 }
 .footer {
 	padding:2.5em 0;
+	width: 100%;
 	position:relative;
+	bottom: 0;
 	background:#eceef0;
 }
 .up-arrow {
@@ -978,162 +980,56 @@ li.home a img {
       }
 /* faq page ends */
 
-.login {
-  background-color: #364150 !important;
-}
-
-.login .content {
-	background-color: #eceef1;
-	-webkit-border-radius: 7px;
-	-moz-border-radius: 7px;
-	-ms-border-radius: 7px;
-	-o-border-radius: 7px;
-	border-radius: 7px;
-	width: 400px;
-	margin: 40px auto 10px auto;
-	padding: 30px;
-	padding-top: 10px;
-	overflow: hidden;
-	position: relative;
-  }
-
-.register-form{
-	border: 0;
-	margin-bottom: 0;
-	padding-bottom: 0px;
-}
-
-.login .content .login-form{
-  padding: 0px;
-  margin: 0px;
-}
-
-.login .content .form-control {
-  border: none;
-  background-color: #dde3ec;
-  height: 43px;
-  color: #8290a3;
-  border: 1px solid #dde3ec;
-}
-
-.login .content .form-title {
-	font-weight: 300;
-	margin-bottom: 25px;
-}
-.login .content .hint {
-	color: #999;
-	padding: 0;
-	margin: 15px 0 7px 0;
-}
-.login .content .form-actions .btn {
+.form-actions .btn {
 	margin-top: 1px;
+	border: none;
 }
-.login .content .form-actions .btn-success {
+.btn-success {
+	background-color: green;
 	font-weight: 600;
 	padding: 10px 20px !important;
 }
-.login .content .form-actions .btn-default {
+.btn-success:hover {
+	color: rgb(66, 0, 128);
+}
+.btn-default {
 	font-weight: 600;
 	padding: 10px 25px !important;
-	color: #6c7a8d;
-	background-color: #ffffff;
-	border: none;
+	background-color: #6c7a8d;
 }
-.login .content .form-actions .btn-default:hover {
-	background-color: #fafaff;
+.btn-default:hover {
 	color: #45b6af;
 }
-.login .logo img {
-	margin: 0 auto ;
-	margin-top: 60px;
-	padding: 15px;
-	text-align: center ;
+.btn-danger {
+	font-weight: 600;
+	padding: 10px 25px !important;
+	background-color: #ec0d0d;
+}
+.btn-danger:hover {
+	color: #38342d;
+}
+.btn-warning {
+	background-color: orange;
+	font-weight: 600;
+	padding: 10px 20px !important;
 }
 
 /***
  Alerts
 ***/
+.alert {
+	border-width: 10px;
+}
 .alert-success {
 	background-color: #dff0d8;
 	border-color: #d6e9c6;
 	color: #3c763d;
-}
-.alert-success hr {
-	border-top-color: #c9e2b3;
-}
-.alert-success .alert-link {
-	color: #2b542c;
-}
-.alert-info {
-	background-color: #d9edf7;
-	border-color: #bce8f1;
-	color: #31708f;
-}
-.alert-info hr {
-	border-top-color: #a6e1ec;
-}
-.alert-info .alert-link {
-	color: #245269;
-}
-.alert-warning {
-	background-color: #fcf8e3;
-	border-color: #faebcc;
-	color: #8a6d3b;
-}
-.alert-warning hr {
-	border-top-color: #f7e1b5;
-}
-.alert-warning .alert-link {
-	color: #66512c;
 }
 .alert-danger {
 	background-color: #f2dede;
 	border-color: #ebccd1;
 	color: #a94442;
 }
-.alert-danger hr {
-	border-top-color: #e4b9c0;
-}
-.alert-danger .alert-link {
-	color: #843534;
-}
-.close {
-	display: inline-block;
-	margin-top: 0px;
-	margin-right: 0px;
-	width: 9px;
-	height: 9px;
-	background-repeat: no-repeat !important;
-	text-indent: -10000px;
-	outline: none;
-	background-image: url("../images/remove-icon-small.png") !important;
-}
 
-.control-label {
-	margin-top: 1px;
-}
-.control-label .required {
-	color: #e02222;
-	font-size: 12px;
-	padding-left: 2px;
-}
-
-
-@media (max-width: 440px) {
-	/***
-	Login page
-	***/
-	/* .login .logo {
-	  margin-top: 10px;
-	}
-  
-	.login .content {
-	  width: 280px;
-	  margin-top: 10px;
-	}
-  
-	.login .content h3 {
-	  font-size: 22px;
-	}
-*/
-  }
+/* @media (max-width: 440px) {
+  } */

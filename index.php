@@ -1,20 +1,18 @@
+<?php include("server/dh-config.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DrinksHub | Order Wine, Spirit & Carbonated Drinks</title>
+	<title>DrinksHub | <?php echo $config['title'] ?></title>
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 	<link href="css/nav.css" rel="stylesheet" type="text/css" media="all"/>
 </head>
 
 <body>
 	<div class="header" id="home">
-		<!-- header-section-starts -->
-		<div class="c-header" id="home">
 			<?php include('header.php') ?>
-		</div>
+
 		<!-- alert -->
 		<?php if(isset($_GET["msg"])){ ?>
 			<div class="alert alert-success">
@@ -27,19 +25,9 @@
 				<strong>Error!</strong> <?php echo $_GET["err"]; ?>
 			</div>
 		<?php } ?>
+
 		<!-- banner -->
 		<div class="banner">
-			<!-- <div class="signing text-right">
-				<div class="container">
-					<div class="sign-in">
-						<a href="login.php">Sign In</a>
-					</div>
-					<div class="sign-up1">
-						<a href="register.php">Sign Up</a>
-					</div>
-					
-				</div>
-			</div> -->
 			<div class="banner-info text-center">
 				<h3>Leading Online Store For Premium Drinks</h3>
 					<p></p>
@@ -49,7 +37,6 @@
 	</div>
 	
 	<div class="content">
-        
 		<div class="features-section">
 			<div class="features-section-head text-center">
 				<h3><span>F</span>eatured Drink</h3>
@@ -99,7 +86,6 @@
 									<div class="main-price">
 										<h3><span>$</span>30</h3>
 									</div>
-									
 								</div>
 								</div>
 							</div>
@@ -111,25 +97,22 @@
 								</div></a>
 								<div class="title">
 									<div class="colors">
-									<h4>Belvedere Vodka</h4>
-									
+										<h4>Belvedere Vodka</h4>
 									</div>
 									<div class="main-price">
 										<h3><span>$</span>97</h3>
 									</div>
-									
 								</div>
 							</div>
 						</div>		
-						<div class="portfolio web mix_all"  data-cat="web" style="display: inline-block; opacity: 1;">
+						<div class="portfolio web mix_all" data-cat="web" style="display: inline-block; opacity: 1;">
 							<div class="portfolio-wrapper">		
-								<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+								<a href="single.html" class="b-link-stripe b-animate-go thickbox">
 								<img src="images/thirddrink.png" class="img-responsive" alt="" /><div class="b-wrapper"><div class="atc"><p>Add To Cart</p></div><h2 class="b-animate b-from-left    b-delay03 "><img src="images/icon-eye.png" class="img-responsive go" alt=""/></h2>
 								</div></a>
 								<div class="title">
 									<div class="colors">
-									<h4>Ciroc Blue Vodka</h4>
-									
+										<h4>Ciroc Blue Vodka</h4>
 									</div>
 									<div class="main-price">
 										<h3><span>$</span>890</h3>
@@ -145,13 +128,11 @@
 								</div></a>
 								<div class="title">
 									<div class="colors">
-									<h4>Ciroc Blue Vodka</h4>
-									
+										<h4>Ciroc Blue Vodka</h4>
 									</div>
 									<div class="main-price">
 										<h3><span>$</span>180</h3>
 									</div>
-									
 								</div>
 							</div>
 						</div>
@@ -162,8 +143,7 @@
 								<p class="b-animate b-from-right    b-delay03 "></p></div></a>
 								<div class="title">
 									<div class="colors">
-									<h4>Ciroc Blue Vodka</h4>
-									
+										<h4>Ciroc Blue Vodka</h4>
 									</div>
 									<div class="main-price">
 										<h3><span>$</span>30</h3>
@@ -172,9 +152,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="portfolio app mix_all"  data-cat="app" style="display: inline-block; opacity: 1;">
+						<div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
 							<div class="portfolio-wrapper">		
-								<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+								<a href="single.html" class="b-link-stripe b-animate-go thickbox">
 								<img src="images/firstdrink.png" class="img-responsive" alt="" /><div class="b-wrapper"><div class="atc"><p>Add To Cart</p></div><div class="clearfix"></div><h2 class="b-animate b-from-left    b-delay03 "><img src="images/icon-eye.png" class="img-responsive go" alt=""/></h2>
 								</div></a>
 								<div class="title">
@@ -239,11 +219,9 @@
 							<input type="submit" value="">
 						</form>
 					</div>
-
 		</div>
 	</div>
 
-    
     <!-- footer -->
     <?php include('footer.html') ?>
 </body>

@@ -12,46 +12,46 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 <!-- action for submit button -->
 <?php
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
-	
-	$_SESSION['regform'] = $_POST;
-	
-	$check = $_POST["usr_email"];
+	if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
+		
+		// $_SESSION['regform'] = $_POST;
+		
+		$check = $_POST["usr_email"];
 
-    // check if email is already registered
+		// check if email is already registered
+		mysqli_select_db($dbconn, $database_dbconn);
+		$query_emailCheck = sprintf("SELECT * FROM user WHERE usr_email = %s", GetSQLValueString($check, "text"));
+		$emailCheck = mysqli_query($dbconn,$query_emailCheck) or die(mysqli_error($dbconn));
+		$row_emailCheck = mysqli_fetch_assoc($emailCheck);
+		$totalRows_emailCheck = mysqli_num_rows($emailCheck);
+
+		//Start Email checking
+		if($totalRows_emailCheck) {
+			header("Location: register.php?target=register&err=This email is already registered! Please use another one.");
+			exit;
+		}
+		//End of Email checking
+		
+		//register new user
+		$insertSQL = sprintf("INSERT INTO user ( usr_firstname, usr_lastname, usr_email, usr_phone, usr_password, usr_registered_date) VALUES (%s, %s, %s, %s, %s, %s)",
+						GetSQLValueString($_POST['usr_firstname'], "text"),
+						GetSQLValueString($_POST["usr_lastname"], "text"),
+						GetSQLValueString($_POST["usr_email"], "text"),
+						GetSQLValueString($_POST['usr_phone'], "text"),
+						GetSQLValueString($_POST["usr_password"], "text"),
+						GetSQLValueString(date("Y-m-d h:i:s"), "date"),
+						);
 	mysqli_select_db($dbconn, $database_dbconn);
-	$query_emailCheck = sprintf("SELECT * FROM user WHERE usr_email = %s", GetSQLValueString($check, "text"));
-	$emailCheck = mysqli_query($dbconn,$query_emailCheck) or die(mysqli_error($dbconn));
-	$row_emailCheck = mysqli_fetch_assoc($emailCheck);
-	$totalRows_emailCheck = mysqli_num_rows($emailCheck);
+	$Result1 = mysqli_query($dbconn,$insertSQL) or die(mysqli_error($dbconn));
 
-	//Start Email checking
-	if($totalRows_emailCheck) {
-		header("Location: register.php?target=register&err=This email is already registered ! Please use another one.");
-		exit;
+	$insertGoTo = "login.php?msg=Congratulations! Your Registration was Successful. Please Login to continue.";
+	if (isset($_SERVER['QUERY_STRING'])) {
+		$insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
+		$insertGoTo .= $_SERVER['QUERY_STRING'];
 	}
-	//End of Email checking
-	
-  	//register new user
- 	$insertSQL = sprintf("INSERT INTO user ( usr_firstname, usr_lastname, usr_email, usr_phone, usr_password, usr_registered_date) VALUES (%s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['usr_firstname'], "text"),
-                       GetSQLValueString($_POST["usr_lastname"], "text"),
-                       GetSQLValueString($_POST["usr_email"], "text"),
-                       GetSQLValueString($_POST['usr_phone'], "text"),
-                       GetSQLValueString($_POST["usr_password"], "text"),
-                       GetSQLValueString(date("Y-m-d h:i:s"), "date"),
-					);
-  mysqli_select_db($dbconn, $database_dbconn);
-  $Result1 = mysqli_query($dbconn,$insertSQL) or die(mysqli_error($dbconn));
+	header(sprintf("Location: %s", $insertGoTo));
 
-  $insertGoTo = "login.php?msg=Congratulations! Your Registration was Successful. Please Login to continue.";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-    $insertGoTo .= $_SERVER['QUERY_STRING'];
-  }
-  header(sprintf("Location: %s", $insertGoTo));
-
-}
+	}
 ?>
 
 <!-- registration page -->
@@ -68,9 +68,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 <body>
 	
 	<!-- header-section-starts -->
-	<div class="c-header" id="home">
 		<?php include('header.php') ?>
-	</div>
 
 	<div class="container">
 		<div class="row">
@@ -79,7 +77,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 				<!-- Alert messages -->
 				<?php if(isset($_GET["err"]) && !empty($_GET["err"])){ ?>
 					<div class="alert alert-danger">
-						<!-- <button class="close" data-close="alert"></button> -->
 						<span>
 						<?php echo $_GET["err"]; ?>. </span>
 					</div>     
@@ -87,7 +84,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 
 				<?php if(isset($_GET["msg"]) && !empty($_GET["msg"])){ ?>
 					<div class="alert alert-success">
-						<!-- <button class="close" data-close="alert"></button> -->
 						<span>
 						<?php echo $_GET["msg"]; ?>. </span>
 					</div>     
@@ -96,46 +92,43 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 					<div class="contact-form">
 
 						<!-- BEGIN REGISTRATION FORM -->
-						<form action="<?php echo $editFormAction; ?>" method="POST" class="register-form" id="register" name="register">
-							<div class="form-title">
-								<span class="form-title">Create a New Account</span>
+						<form action="<?php echo $editFormAction; ?>" method="POST" id="register" name="register">
+							<div>
+								<h2>Create a New Account</h2>
 							</div>
 
 							<?php if(isset($_GET["error"]) && !empty($_GET["error"])){ ?>
 							<div class="alert alert-danger">
-								<button class="close" data-close="alert"></button>
 								<span>
 								<?php echo $_GET["error"]; ?>. </span>
 							</div>     
 							<?php } ?> 
 
-
-							<div class="form-group">
-								<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-								<label class="control-label ">Email*</label>
-							<input class="form-control" type="email" name="usr_email" required/>
+							<div>
+								<label>Email*</label>
+							<input type="email" name="usr_email" required/>
 							</div>
-							<div class="form-group">
-								<label class="control-label ">Password*</label>
-								<input class="form-control" type="password" id=" usr_password" name="usr_password" required/>
+							<div>
+								<label>Password*</label>
+								<input type="password" id=" usr_password" name="usr_password" required/>
 							</div>
-							<div class="form-group">
-								<label class="control-label ">Phone Number*</label>
-								<input class="form-control" type="text" name="usr_phone" required/>
+							<div>
+								<label>Phone Number*</label>
+								<input type="text" name="usr_phone" required/>
 							</div>
 
-							<div class="form-group">
-								<label class="control-label ">Last Name*</label>
-								<input class="form-control" type="text" name="usr_lastname" required/>
+							<div>
+								<label>Last Name*</label>
+								<input type="text" name="usr_lastname" required/>
 							</div>
 
-							<div class="form-group">
-								<label class="control-label ">First Name*</label>
-								<input class="form-control" type="text" name=" usr_firstname" required/>
+							<div>
+								<label>First Name*</label>
+								<input type="text" name=" usr_firstname" required/>
 							</div>
 					
 							<div class="form-actions">
-								<button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
+								<button type="submit" class="btn btn-success">Submit</button>
 							</div>
 							<input type="hidden" name="MM_insert" value="register">
 						</form>
@@ -145,5 +138,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 			</div>
 		</div>
 	</div>
+
+	<!-- footer -->
+	<?php include('footer.html') ?>
 </body>
 </html>
