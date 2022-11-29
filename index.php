@@ -1,4 +1,15 @@
 <?php include("server/dh-config.php"); ?>
+<?php require_once('server/dbconn.php'); ?>
+
+<?php
+	// get drink list from db
+	mysqli_select_db($dbconn, $database_dbconn);
+	$query_drinks = sprintf("SELECT * FROM drink");
+	$drinks = mysqli_query($dbconn,$query_drinks) or die(mysqli_error($dbconn));
+	$row_drinks = mysqli_fetch_assoc($drinks);
+	$totalRows_drinks = mysqli_num_rows($drinks);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,101 +86,36 @@
 						<li><span class="filter"><label></label>Carbonated</span></li>
 					</ul>
 					<div id="drinklist2">
-						<div class="portfolio card mix_all" style="display: inline-block; opacity: 1;">                                                                                       
-							<div class="portfolio-wrapper">		
-								<a href="#" class="b-link-stripe b-animate-go  thickbox">
-								<img src="images/firstdrink.png" class="img-responsive" alt="" /><div class="b-wrapper"><div class="atc"><p>Add To Cart</p></div>><h2 class="b-animate b-from-left    b-delay03 "><img src="images/icon-eye.png" class="img-responsive go" alt=""/></h2>
-								</div></a>
-								<div class="title">
-									<div class="colors">
-								<h4>Moet & Chandon</h4>
-									<div class="main-price">
-										<h3><span>$</span>30</h3>
+
+						<?php if($totalRows_drinks > 0) { ?>
+							<?php do { ?>
+
+							<div class="portfolio card mix_all" style="display: inline-block; opacity: 1;">                                                                                       
+								<div class="portfolio-wrapper">		
+									<a href="checkout.php?id=<?php echo $row_drinks["drk_id"]; ?>" class="b-link-stripe b-animate-go thickbox">
+									<img src="images/<?php echo $row_drinks["drk_image"]; ?>" class="img-responsive" alt="" /><div class="b-wrapper"><div class="atc"><p>Buy</p></div><h2 class="b-animate b-from-left    b-delay03 "><img src="images/icon-eye.png" class="img-responsive go" alt=""/></h2>
+									</div></a>
+									<div class="title">
+										<div class="colors">
+									<h4>
+										<?php echo $row_drinks["drk_name"]; ?>
+									</h4>
+										<div class="main-price">
+											<h3><span>$</span><?php echo $row_drinks["drk_price"]; ?></h3>
+										</div>
 									</div>
-								</div>
-								</div>
-							</div>
-						</div>				
-						<div class="portfolio app mix_all"  data-cat="app" style="display: inline-block; opacity: 1;">
-							<div class="portfolio-wrapper">		
-								<a href="#" class="b-link-stripe b-animate-go  thickbox">
-								<img src="images/seconddrink.png" class="img-responsive" alt="" /><div class="b-wrapper"><div class="atc"><p>Add To Cart</p></div><h2 class="b-animate b-from-left    b-delay03 "><img src="images/icon-eye.png" class="img-responsive go" alt=""/></h2>
-								</div></a>
-								<div class="title">
-									<div class="colors">
-										<h4>Belvedere Vodka</h4>
-									</div>
-									<div class="main-price">
-										<h3><span>$</span>97</h3>
 									</div>
 								</div>
 							</div>
-						</div>		
-						<div class="portfolio web mix_all" data-cat="web" style="display: inline-block; opacity: 1;">
-							<div class="portfolio-wrapper">		
-								<a href="single.html" class="b-link-stripe b-animate-go thickbox">
-								<img src="images/thirddrink.png" class="img-responsive" alt="" /><div class="b-wrapper"><div class="atc"><p>Add To Cart</p></div><h2 class="b-animate b-from-left    b-delay03 "><img src="images/icon-eye.png" class="img-responsive go" alt=""/></h2>
-								</div></a>
-								<div class="title">
-									<div class="colors">
-										<h4>Ciroc Blue Vodka</h4>
-									</div>
-									<div class="main-price">
-										<h3><span>$</span>890</h3>
-									</div>
-									
-								</div>
+							<!-- <div class="clearfix"></div> -->
+							<?php }while ($row_drinks = mysqli_fetch_assoc($drinks)); ?>
+
+						<?php } else { ?>
+							<div class="alert alert-danger">
+								<strong>Sorry!</strong> No Drink Found.
 							</div>
-						</div>				
-						<div class="portfolio icon mix_all"  data-cat="icon" style="display: inline-block; opacity: 1;">
-							<div class="portfolio-wrapper">		
-								<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-								<img src="images/firstdrink.png" class="img-responsive" alt="" /><div class="b-wrapper"><div class="atc"><p>Add To Cart</p></div><h2 class="b-animate b-from-left    b-delay03 "><img src="images/icon-eye.png" class="img-responsive go" alt=""/></h2>
-								</div></a>
-								<div class="title">
-									<div class="colors">
-										<h4>Ciroc Blue Vodka</h4>
-									</div>
-									<div class="main-price">
-										<h3><span>$</span>180</h3>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="portfolio icon mix_all"  data-cat="icon" style="display: inline-block; opacity: 1;">
-							<div class="portfolio-wrapper">		
-								<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-								<img src="images/firstdrink.png" class="img-responsive" alt="" /><div class="b-wrapper"><div class="atc"><p>Add To Cart</p></div><h2 class="b-animate b-from-left    b-delay03 "><img src="images/icon-eye.png" class="img-responsive go" alt=""/></h2>
-								<p class="b-animate b-from-right    b-delay03 "></p></div></a>
-								<div class="title">
-									<div class="colors">
-										<h4>Ciroc Blue Vodka</h4>
-									</div>
-									<div class="main-price">
-										<h3><span>$</span>30</h3>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-						<div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
-							<div class="portfolio-wrapper">		
-								<a href="single.html" class="b-link-stripe b-animate-go thickbox">
-								<img src="images/firstdrink.png" class="img-responsive" alt="" /><div class="b-wrapper"><div class="atc"><p>Add To Cart</p></div><div class="clearfix"></div><h2 class="b-animate b-from-left    b-delay03 "><img src="images/icon-eye.png" class="img-responsive go" alt=""/></h2>
-								</div></a>
-								<div class="title">
-									<div class="colors">
-									<h4>Ciroc Blue Vodka</h4>
-									
-									</div>
-									<div class="main-price">
-										<h3><span>$</span>29</h3>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>	
-						<div class="clearfix"></div>					
+						<?php } ?>
+
 					</div>
 					<div class="clearfix"></div>
 					<div class="more">
